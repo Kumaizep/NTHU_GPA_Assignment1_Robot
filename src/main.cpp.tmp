@@ -1,0 +1,86 @@
+#include "Common.h"
+
+void glRender() {
+    int x = 2, y = 2, width = 200, height = 100;
+    glColor3f(0.5f, 0.5f, 1.0f);
+    glBegin(GL_QUADS);
+    {
+        glVertex2f(x, y);
+        glVertex2f(x + width, y);
+        glVertex2f(x + width, y + height);
+        glVertex2f(x, y + height);
+    }
+    glEnd();
+}
+
+int main() {
+    // initial glfw
+    glfwInit();
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+
+
+    // create window
+    GLFWwindow* window = glfwCreateWindow(600, 600, "Practice", NULL, NULL);
+    if (window == NULL)
+    {
+        std::cout << "Failed to create GLFW window" << std::endl;
+        glfwTerminate();
+        return -1;
+    }
+    glfwSetWindowPos(window, 100, 100);
+    glfwMakeContextCurrent(window);
+    
+    // setup imgui
+    // IMGUI_CHECKVERSION();
+    // ImGui::CreateContext();
+    // ImGuiIO& io = ImGui::GetIO(); (void)io;
+    
+    // ImGui::StyleColorsDark();
+    
+    // ImGui_ImplGlfw_InitForOpenGL(window, true);
+    // ImGui_ImplOpenGL3_Init("#version 410 core");
+    
+    // register glfw callback functions
+    glfwSetFramebufferSizeCallback(window, My_Reshape);
+    glfwSetKeyCallback(window, My_Keyboard);
+    glfwSetMouseButtonCallback(window, My_Mouse);
+    
+    // load OpenGL function pointer
+    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+    {
+        std::cout << "Failed to initialize GLAD" << std::endl;
+        return -1;
+    }
+
+    dumpInfo();
+    My_Init();
+
+    // main loop
+    while (!glfwWindowShouldClose(window))
+    {
+        // Poll input event
+        glfwPollEvents();
+                
+        My_Display();
+        
+        My_GUI();
+
+        // swap buffer from back to front
+        glfwSwapBuffers(window);
+    }
+    
+    // cleanup imgui
+    // ImGui_ImplOpenGL3_Shutdown();
+    // ImGui_ImplGlfw_Shutdown();
+    // ImGui::DestroyContext();
+    
+    glfwDestroyWindow(window);
+    glfwTerminate();
+    
+    // just for compatibiliy purposes
+    return 0;
+}
+

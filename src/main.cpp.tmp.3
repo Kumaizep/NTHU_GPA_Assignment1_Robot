@@ -1,0 +1,113 @@
+// void drawBaseOnBody(int shapeID, int textureID, mat4 relativeMatrix, mat4 scaleMatrix)
+// {
+// 	glBindVertexArray(m_shape.robotVAO[shapeID]);
+
+// 	translateMatrix = translate(mat4(1.0f), bodyShift + vec3(0.0f, 3.5f, 0.0f));
+// 	rorateZMatrix   = rotate(mat4(1.0f), radians(bodyRotate.onX), vec3(1.0f, 1.0f, 0.0f));
+// 	rorateZMatrix   = rotate(mat4(1.0f), radians(bodyRotate.onZ), vec3(0.0f, 1.0f, 0.0f));
+// 	rorateYMatrix   = rotate(mat4(1.0f), radians(bodyRotate.onY), vec3(0.0f, 0.0f, 1.0f));
+// 	modelMatrix     = translateMatrix * rorateZMatrix * rorateYMatrix * relativeMatrix * scaleMatrix;
+
+// 	glUniform1i(tex, textureID);
+// 	glUniformMatrix4fv(um4mv, 1, GL_FALSE, value_ptr(view * modelMatrix));
+// 	glUniformMatrix4fv(um4p, 1, GL_FALSE, value_ptr(projection));
+
+// 	glDrawArrays(GL_TRIANGLES, 0, m_shape.vertexCounts[shapeID]);
+// }
+
+// void drawHead()
+// {
+// 	relativeMatrix  = translate(mat4(1.0f), vec3(0.0f, 1.5f, 0.0f));
+// 	scaleMatrix	 	= scale(mat4(1.0f), vec3(1.0f, 1.0f, 1.0f));
+	
+// 	drawBaseOnBody(Sphere, Mafuyu, relativeMatrix, scaleMatrix);
+// }
+
+// void drawBody()
+// {
+// 	relativeMatrix  = translate(mat4(1.0f), vec3(0.0f, 0.0f, 0.0f));
+// 	scaleMatrix		= scale(mat4(1.0f), vec3(1.0f, 2.0f, 1.5f));
+	
+// 	drawBaseOnBody(Cube, Hai, relativeMatrix, scaleMatrix);
+// }
+
+// void drawBaseOnLeftUpperarm(int shapeID, int textureID, mat4 relativeMatrix, mat4 scaleMatrix)
+// {
+// 	redirectMatrix  = translate(mat4(1.0f), vec3(0.0f, -0.5f, 0.0f));
+// 	rorateXMatrix   = rotate(mat4(1.0f), radians(leftUpperarmRotate.onX), vec3(1.0f, 0.0f, 0.0f));
+// 	rorateYMatrix   = rotate(mat4(1.0f), radians(leftUpperarmRotate.onZ), vec3(0.0f, 1.0f, 0.0f));
+// 	rorateZMatrix   = rotate(mat4(1.0f), radians(leftUpperarmRotate.onY), vec3(0.0f, 0.0f, 1.0f));
+// 	translateMatrix = translate(mat4(1.0f), vec3(0.0f, 1.0f, 1.0f));
+// 	relativeMatrix  = translateMatrix * rorateYMatrix * rorateZMatrix * rorateXMatrix * redirectMatrix * relativeMatrix;
+	
+// 	drawBaseOnBody(shapeID, textureID, relativeMatrix, scaleMatrix);
+// }
+
+// void drawLeftUpperarm()
+// {
+// 	relativeMatrix  = translate(mat4(1.0f), vec3(0.0f, 0.0f, 0.0f));
+// 	scaleMatrix	 	= scale(mat4(1.0f), vec3(0.5f, 1.0f, 0.5f));
+	
+// 	drawBaseOnLeftUpperarm(Cube, Saki, relativeMatrix, scaleMatrix);
+// }
+
+// void drawLeftForearm()
+// {
+// 	redirectMatrix  = translate(mat4(1.0f), vec3(0.0f, -0.5f, 0.0f));
+// 	rorateXMatrix   = rotate(mat4(1.0f), radians(leftForearmRotate.onX), vec3(1.0f, 0.0f, 0.0f));
+// 	rorateYMatrix   = rotate(mat4(1.0f), radians(leftForearmRotate.onZ), vec3(0.0f, 1.0f, 0.0f));
+// 	rorateZMatrix   = rotate(mat4(1.0f), radians(leftForearmRotate.onY), vec3(0.0f, 0.0f, 1.0f));
+// 	translateMatrix = translate(mat4(1.0f), vec3(0.0f, -0.5f, 0.0f));
+// 	relativeMatrix  = translateMatrix * rorateYMatrix * rorateZMatrix * rorateXMatrix * redirectMatrix;
+// 	scaleMatrix	 	= scale(mat4(1.0f), vec3(0.5f, 1.0f, 0.5f));
+	
+// 	drawBaseOnLeftUpperarm(Cube, Shiho, relativeMatrix, scaleMatrix);
+// }
+
+// void drawRightUpperarm()
+// {
+// 	relativeMatrix  = translate(mat4(1.0f), vec3(0.0f, 0.5f, -1.0f));
+// 	scaleMatrix	 	= scale(mat4(1.0f), vec3(0.5f, 1.0f, 0.5f));
+	
+// 	drawBaseOnBody(Cube, Shizuku, relativeMatrix, scaleMatrix);
+// }
+
+// void drawRightForearm()
+// {
+// 	relativeMatrix  = translate(mat4(1.0f), vec3(0.0f, -0.5f, -1.0f));
+// 	scaleMatrix	 	= scale(mat4(1.0f), vec3(0.5f, 1.0f, 0.5f));
+	
+// 	drawBaseOnBody(Cube, Haruka, relativeMatrix, scaleMatrix);
+// }
+
+// void drawLeftThigh()
+// {
+// 	relativeMatrix  = translate(mat4(1.0f), vec3(0.0f, -1.5f, 0.35f));
+// 	scaleMatrix	 	= scale(mat4(1.0f), vec3(0.5f, 1.0f, 0.5f));
+	
+// 	drawBaseOnBody(Cube, Saki, relativeMatrix, scaleMatrix);
+// }
+
+// void drawRightThigh()
+// {
+// 	relativeMatrix  = translate(mat4(1.0f), vec3(0.0f, -1.5f, -0.35f));
+// 	scaleMatrix	 	= scale(mat4(1.0f), vec3(0.5f, 1.0f, 0.5f));
+
+// 	drawBaseOnBody(Cube, Shizuku, relativeMatrix, scaleMatrix);
+// }
+
+// void drawLeftClaf()
+// {
+// 	relativeMatrix  = translate(mat4(1.0f), vec3(0.0f, -2.5f, 0.35f));
+// 	scaleMatrix	    = scale(mat4(1.0f), vec3(0.5f, 1.0f, 0.5f));
+	
+// 	drawBaseOnBody(Cube, Shiho, relativeMatrix, scaleMatrix);
+// }
+
+// void drawRightClaf()
+// {
+// 	relativeMatrix  = translate(mat4(1.0f), vec3(0.0f, -2.5f, -0.35f));
+// 	scaleMatrix	 	= scale(mat4(1.0f), vec3(0.5f, 1.0f, 0.5f));
+	
+// 	drawBaseOnBody(Cube, Haruka, relativeMatrix, scaleMatrix);
+// }
